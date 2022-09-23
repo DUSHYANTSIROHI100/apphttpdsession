@@ -5,10 +5,11 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
 
 /**
  * Servlet implementation class DisplayServlet
@@ -26,11 +27,11 @@ public class DisplayServlet extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		String email=request.getParameter("email");
 		String mobile=request.getParameter("mobile");
-		HttpSession hs=request.getSession();
-		String uname=(String)hs.getAttribute("uname");
-		String uage=(String)hs.getAttribute("uage");
-		String uqual=(String)hs.getAttribute("uqual");
-		String udesig=(String)hs.getAttribute("udesig");
+		Cookie[] cookies=request.getCookies();
+		String uname=cookies[0].getValue();
+		String uage=cookies[1].getValue();
+		String uqual=cookies[2].getValue();
+		String udesig=cookies[3].getValue();
 		out.println("<html>");
 		out.println("<body bgcolor='lightgreen'>");
 		out.println("<center><br><br>");
